@@ -1,0 +1,148 @@
+@media (min-width: 768px) 
+    .header 
+        .container
+            padding: 0 45px
+
+        .top-bar
+            .navbar-brand
+                width: auto
+
+                span 
+                    display: block
+
+            .right-block
+                .notification-col
+                    .notifications
+                        left: auto
+                        right: 125px
+
+                        &::before
+                            right: 20px
+
+    .main 
+        .content 
+            .row
+                .col 
+                    flex: 0 0 30%
+
+            .wrapper 
+                .form-block 
+                    .form-header 
+                        display: flex
+                        align-items: center
+                        height: 50px
+
+                        .form-header-text 
+                            margin-top: 0
+                            margin-left: 50px
+                            text-align: left
+                        
+                    .user-forms 
+                        padding-left: 50px
+                        padding-right: 50px
+
+                        .input-form 
+                            flex: 0 0 48%
+                        
+                        .form-submit 
+                            top: 12px
+                            right: 50px
+                            transform: translateY(0)
+
+            .settings-col
+                flex-direction: row
+                justify-content: flex-start
+
+                .profile-image-setting
+                    margin-right: 2rem
+
+                .profile-image-content
+                    .profile-image-btn
+                        margin: 0
+
+
+@media (min-width: 992px)
+    .header
+        .top-bar
+            .mobile-options
+                display: none
+
+            .right-block
+                display: flex
+                position: unset
+                width: auto
+                padding: 0
+                background: transparent
+
+                .notification-col
+                    .notifi-btn
+                        color: unset
+
+                    .notifications
+                        right: 100px
+                
+                .user__settings
+                    .user__dropdown-toggle
+                        .icon
+                            color: unset
+    
+
+@media (min-width: 1200px) 
+    .main 
+        .sidebar 
+            left: 0
+            width: 260px
+
+            .sidebar-link, .logout-link 
+                .icon 
+                    margin-right: 10px
+                
+
+                .text 
+                    display: block
+                
+
+                &:hover 
+                    color: $color-w
+                    background: $color-5
+                
+            
+
+            &.sidebar-min 
+                width: auto
+    
+                .sidebar-dropdown-menu 
+                    padding-left: 0
+    
+                    .sidebar-link 
+                        .icon 
+                            margin-right: 10px
+                        
+                    
+                
+    
+                .sidebar-link, .logout-link 
+                    .icon 
+                        margin-right: 0
+                    
+    
+                    .text 
+                        display: none
+
+                .sidebar__toggle-min 
+                    .icon 
+                        transform: rotateY(180deg)
+
+                & + .content 
+                    margin-left: 50px
+
+        .content
+            padding-left: 70px
+            padding-right: 70px
+            margin-left: 260px
+
+            .wrapper 
+                justify-content: space-between
+
+                .avatar-block, .form-block 
+                    margin: 0

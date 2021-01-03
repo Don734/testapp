@@ -1,0 +1,231 @@
+.header
+    .top-bar
+        position: relative
+        display: flex
+        justify-content: space-between
+        align-items: center
+        height: 85px
+
+        .navbar-brand 
+            display: flex
+            justify-content: center
+            align-items: center
+            width: 85px
+            height: 100%
+            font-size: 24px
+            color: $color-1
+            text-transform: uppercase
+
+            span 
+                display: none
+                font-weight: bold
+                font-size: 28px
+                margin-left: 10px
+
+        .mobile-options
+            display: flex
+            justify-content: center
+            align-items: center
+            width: 85px
+            height: 100%
+
+        .right-block
+            position: absolute
+            top: 85px
+            right: 0
+            width: 100%
+            height: 65px
+            padding: 0 25px
+            display: none
+            justify-content: flex-end
+            align-items: center
+            background: $color-1
+            z-index: 2
+
+            .notification-col
+                display: flex
+
+                .notifi-btn
+                    position: relative
+                    margin-right: 3em
+                    color: $color-w
+                    background: transparent
+                    border: none
+                    outline: none
+                    cursor: pointer
+
+                    .notifi-count
+                        display: flex
+                        align-items: center
+                        justify-content: center
+                        position: absolute
+                        top: -8px
+                        right: 0
+                        width: 20px
+                        height: 20px
+                        color: $color-w
+                        background: $color-8
+                        border-radius: 50%
+                        animation: not-blink 2s ease infinite
+
+                .notifications
+                    display: none
+                    position: absolute
+                    top: 105px
+                    left: 0
+                    right: auto
+                    max-width: 385px
+                    max-height: 255px
+                    width: 100%
+                    text-align: center
+                    box-shadow: 0 5px 10px rgba($color: $color-b, $alpha: 0.3)
+                    border-radius: 0 0 5px 5px
+                    background: $color-w
+                    overflow-y: auto
+                    z-index: 2
+
+                    .notification-header
+                        display: flex
+                        align-items: center
+                        justify-content: space-between
+                        padding: 0 20px
+
+                    .notifications-mark, .notifications-delete
+                        padding: 5px
+                        font-weight: 400
+                        font-size: 12px
+                        color: $color-2
+                        border-radius: 4px
+                        
+                        &:hover
+                            text-decoration: underline
+
+                    .notification-menu
+                        text-align: left
+
+                    .notification-item
+                        padding: 10px 20px
+
+                        .notification-user, .notification-msg, .notification-time
+                            margin-top: 0
+                            margin-bottom: 5px
+
+                        .notification-user
+                            font-size: 15px
+                            font-weight: 500
+
+                        .notification-msg
+                            font-size: 14px
+                        
+                        .notification-time
+                            font-size: 12px
+
+                        &:hover
+                            background: $color-3
+                            cursor: pointer
+
+                    &.show
+                        display: block
+
+                    &::before
+                        content: ''
+                        position: absolute
+                        top: -8px
+                        right: calc( 100% - 230px )
+                        border: 10px solid transparent
+                        border-left-color: $color-w
+                        border-top-color: $color-w
+                        border-radius: 3px
+                        box-shadow: -5px -5px 12px -2px rgba($color-b,0.3)
+                        transform: rotate(45deg)
+                        z-index: 1002
+
+            .user__settings 
+                .user__dropdown-toggle 
+                    display: flex
+                    align-items: center
+
+                    .user__avatar 
+                        display: block
+                        width: 40px
+                        height: 40px
+                        border: 2px solid $color-b
+                        border-radius: 50%
+                    
+                    .icon
+                        font-size: 30px
+                        margin-left: 5px
+                        color: $color-w
+                    
+                .user__setting-menu 
+                    position: absolute
+                    top: 105px
+                    right: 0
+                    width: 300px
+                    box-shadow: 0 5px 10px rgba($color: $color-b, $alpha: 0.3)
+                    border-radius: 0 0 5px 5px
+                    background: $color-w
+                    z-index: 2
+                    visibility: hidden
+                    opacity: 0
+
+                    .user__info-block 
+                        display: flex
+                        flex-direction: column
+                        align-items: center
+                        padding-top: 20px
+                        padding-bottom: 20px
+                        background: $color-3
+
+                        .user__avatar 
+                            width: 65px
+                            height: 65px
+                            border-radius: 50%
+                        
+                        .user__info-name 
+                            margin-top: 15px
+                            margin-bottom: 15px
+                            font-size: 18px
+                            font-weight: 500
+                        
+                        .user__info-pos, .user__info-status, .user__info-settings 
+                            font-size: 14px
+                        
+                        .user__info-pos 
+                            font-weight: 700
+                            margin-bottom: 5px
+                        
+                        .user__info-status 
+                            font-weight: 400
+                            color: $color-4
+                        
+                        .user__info-settings 
+                            margin-top: 10px
+
+                            &:hover 
+                                text-decoration: underline
+                            
+                    .user__link 
+                        display: block
+                        padding: 10px 15px
+
+                        &:hover 
+                            background: rgba($color: $color-b, $alpha: 0.1)
+                        
+                    &.active 
+                        visibility: visible
+                        opacity: 1
+
+            &.active
+                display: flex
+
+@keyframes not-blink
+    0%
+        opacity: 1
+    70%
+        opacity: 1
+    80%
+        opacity: 0
+    100%
+        opacity: 0
+        

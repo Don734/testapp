@@ -1,0 +1,85 @@
+.sign-block 
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    height: 100vh
+    background: $color-3
+    
+    h1, h2 
+        margin: 0
+    
+    .navbar-brand 
+        display: flex
+        align-items: center
+        font-size: 24px
+        text-transform: uppercase
+
+        span 
+            font-weight: bold
+            font-size: 28px
+            margin-left: 10px
+
+    .form-block 
+        display: flex
+        flex-direction: column
+        max-width: 450px
+        width: 100%
+        padding: 50px 25px
+        margin-top: 55px
+        box-shadow: 0 5px 10px rgba($color: $color-b, $alpha: 0.3)
+        background: $color-w
+        border-radius: 5px
+        text-align: center
+
+        .signup-form 
+            display: flex
+            flex-direction: column
+            width: 100%
+            margin-top: 55px
+
+            .form__input 
+                width: 100%
+                height: 45px
+                padding-left: 20px
+                margin: 10px 0
+                font-family: 'Montserrat', Arial, sans-serif
+                font-size: 14px
+                border: 1px solid rgba($color: $color-1, $alpha: 0.4)
+                border-radius: 3px
+
+                &::placeholder 
+                    color: $color-1
+                    opacity: 0.5
+                
+            .form__col 
+                text-align: left
+            
+            .btn-block 
+                display: flex
+                align-items: center
+                justify-content: flex-end
+                margin-top: 20px
+                width: 100%
+
+                .form__link 
+                    color: $color-1
+                    margin-right: 20px
+
+                    &:hover 
+                        text-decoration: underline
+                    
+                .form__submit 
+                    height: 40px
+                    font-family: 'Montserrat', Arial, sans-serif
+                    font-size: 16px
+                    color: $color-1
+                    background: transparent
+                    border: 1px solid $color-1
+                    border-radius: 3px
+                    cursor: pointer
+                    outline: none
+
+                    &:hover 
+                        color: $color-w
+                        background: $color-1

@@ -1,0 +1,57 @@
+.content 
+        position: absolute
+        left: 0
+        right: 0
+        padding: 50px 15px
+        height: calc(100vh - 85px)
+        background: $color-3
+        overflow-x: hidden
+
+        .page__title 
+            display: flex
+            align-items: center
+            margin: 0
+            font-size: 28px
+            font-weight: 600
+            color: $color-1
+
+            .icon 
+                margin-right: 10px
+                font-size: 30px   
+                          
+        .add 
+            position: absolute
+            display: flex
+            align-items: center
+            padding: 10px 15px
+            width: auto
+            height: 40px
+            font-family: 'Montserrat', Arial, sans-serif
+            font-size: 16px
+            color: $color-1
+            background: transparent
+            border: 1px solid $color-4
+            border-radius: 3px
+            cursor: pointer
+            outline: none
+            z-index: 1
+
+            &:hover 
+                color: $color-w
+                background: $color-4
+            
+        .container_table 
+            .dataTables_length, .dataTables_filter 
+                margin-top: 80px
+          
+        #table_edited 
+            width: 100% !important
+            text-align: center
+
+            td:nth-child(1) 
+                width: 15% !important
+
+        .first
+            font-size: 1em
+            font-weight: bold
+            text-align: center

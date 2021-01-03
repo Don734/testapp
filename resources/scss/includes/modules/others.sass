@@ -1,0 +1,115 @@
+.msg-error 
+    max-width: 450px
+    width: 100%
+    margin-top: 20px
+    padding: 10px
+    font-weight: bold
+    box-shadow: 0 5px 10px rgba($color: $color-b, $alpha: 0.3)
+    border-radius: 5px
+    background: $color-w
+    text-align: center
+
+.modalForm 
+    display: none
+    position: fixed
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    max-width: 450px
+    width: 100%
+    padding: 50px 25px
+    margin-top: 55px
+    box-shadow: 0 5px 10px rgba($color: $color-b, $alpha: 0.3)
+    background: $color-w
+    border-radius: 15px
+    z-index: 2
+
+    .modalForm__close 
+        position: absolute
+        top: 20px
+        right: 20px
+        background: transparent
+        border: none
+        outline: none
+        cursor: pointer
+    
+    .modalForm__col 
+        display: flex
+        flex-direction: column
+
+        .modalForm__control 
+            width: 100%
+            height: 35px
+            padding-left: 20px
+            margin: 10px 0
+            font-family: 'Montserrat', Arial, sans-serif
+            font-size: 14px
+            border: 1px solid rgba($color: $color-1, $alpha: 0.4)
+            border-radius: 3px
+        
+        .modalForm__submit 
+            height: 40px
+            margin-top: 30px
+            font-family: 'Montserrat', Arial, sans-serif
+            font-size: 16px
+            color: $color-1
+            background: transparent
+            border: 1px solid $color-1
+            border-radius: 3px
+            cursor: pointer
+            outline: none
+
+            &:hover 
+                color: $color-w
+                background: $color-1
+            
+    &.active 
+        display: block
+
+#modalAddGroup 
+    .modalForm__col 
+        .container 
+            margin-top: 30px
+        
+    .accordion__title 
+        display: flex
+        justify-content: space-between
+        align-items: center
+        height: 40px
+        padding: 10px
+        color: $color-w
+        background: $color-2
+        cursor: pointer
+
+        .icon 
+            transition: .3s
+        
+        &.active 
+            .icon 
+                transform: rotate(180deg)
+            
+    .accordion__item 
+        display: none
+        padding: 10px
+
+.dt-buttons 
+    position: absolute
+    left: 130px
+
+    .buttons-excel 
+        display: flex
+        align-items: center
+        padding: 10px 15px
+        height: 40px
+        font-family: 'Montserrat', Arial, sans-serif
+        font-size: 16px
+        color: $color-1
+        background: transparent
+        border: 1px solid $color-2
+        border-radius: 3px
+        cursor: pointer
+        outline: none
+
+        &:hover 
+            color: $color-w
+            background: $color-2

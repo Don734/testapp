@@ -1,0 +1,138 @@
+.wrapper 
+    display: flex
+    flex-flow: row wrap
+    justify-content: center
+    margin-top: 40px
+
+    .avatar-block 
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        max-width: 460px
+        width: 100%
+        height: 620px
+        margin-bottom: 30px
+        background: $color-w
+        border-radius: 15px
+        box-shadow: 0 3px 6px rgba($color: $color-b, $alpha: 0.15)
+
+        .avatar 
+            width: 200px
+            height: 200px
+            margin-bottom: 30px
+            border: 2px solid $color-b
+            border-radius: 50%
+            overflow: hidden
+
+            .avatar__img 
+                width: 100%
+                height: 100%
+
+        .user-name 
+            margin-bottom: 10px
+            font-size: 24px
+            font-weight: 600
+            color: $color-2
+
+        .user-pos 
+            margin-bottom: 20px
+            font-size: 20px
+            font-weight: 600
+            color: $color-5
+            text-transform: uppercase
+
+        #avatar-form 
+            display: flex
+            flex-direction: column
+            align-items: center
+
+            .input-name 
+                font-size: 20px
+                font-weight: 500
+                color: $color-1
+                opacity: 0.4
+
+            .input-file 
+                margin: 30px 0
+
+        .date-reg 
+            font-size: 14px
+            color: $color-1
+            opacity: 0.8
+
+    .form-block 
+        position: relative
+        max-width: 1000px
+        width: 100%
+        margin-top: 30px
+        background: $color-w
+        border-radius: 15px
+        box-shadow: 0 3px 6px rgba($color: $color-b, $alpha: 0.15)
+
+        .form-header 
+            height: 85px
+            border-bottom: 1px solid rgba($color: $color-1, $alpha: 0.2)
+
+            .form-header-text 
+                margin-top: 12px
+                font-size: 20px
+                font-weight: 500
+                text-align: center
+                color: $color-1
+
+        .user-forms 
+            padding-top: 40px
+            padding-left: 15px
+            padding-right: 15px
+            padding-bottom: 50px
+
+            h4 
+                margin-bottom: 0
+                font-size: 14px
+                font-weight: normal
+                color: $color-1
+                opacity: 0.6
+
+            .col-info 
+                display: flex
+                flex-flow: row wrap
+                justify-content: space-between
+
+            .input-form 
+                flex: 0 0 100%
+                height: 35px
+                margin-top: 20px
+                padding-left: 20px
+                font-family: 'Montserrat', Arial, sans-serif
+                font-size: 14px
+                border: 1px solid rgba($color: $color-1, $alpha: 0.4)
+                border-radius: 3px
+
+                &::placeholder 
+                    color: $color-1
+                    opacity: 0.5
+
+            .text-form 
+                padding-top: 10px
+                height: 70px
+                resize: none
+
+            .form-submit 
+                position: absolute
+                top: 50px
+                right: 50%
+                transform: translateX(50%)
+                width: 130px
+                height: 30px
+                font-family: 'Montserrat', Arial, sans-serif
+                font-size: 16px
+                color: $color-1
+                background: transparent
+                border: 1px solid $color-1
+                border-radius: 3px
+                cursor: pointer
+                
+                &:hover 
+                    color: $color-w
+                    background: $color-1

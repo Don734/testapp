@@ -1,0 +1,146 @@
+.link-row 
+    display: flex
+    margin-top: 40px
+
+    .settings__link 
+        display: flex
+        justify-content: center
+        width: 230px
+        padding: 15px 0
+        font-size: 18px
+        font-weight: 600
+        border-bottom: 3px solid $color-1
+
+        &:hover, &.active 
+            color: $color-5
+            border-bottom: 3px solid $color-5
+
+
+.other-style
+    padding: 2rem
+    background: rgba($color-b, .05)
+    border: 1px solid rgba($color-b, .3)
+
+.settings-row 
+    margin-top: 40px
+    padding: 2rem 15px
+    color: $color-1
+    background: $color-w
+    border-radius: 15px
+    box-shadow: 0 3px 6px rgba($color: $color-b, $alpha: 0.15)
+
+    .col 
+        display: none
+        max-width: 900px
+
+        .settings-title
+            margin-top: 0
+            margin-bottom: 1rem
+            font-size: 18px
+
+        .settings-context
+            font-size: 14px
+            margin-top: 1rem
+            margin-bottom: 1rem
+
+        .settings-col
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            margin-bottom: 4rem
+            border-radius: 3px
+
+            .settings-context
+                margin-bottom: 0
+
+            .profile-image-setting
+                .profile-image
+                    width: 96px
+                    height: 96px
+            
+            .profile-image-content
+                .profile-image-btn
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    width: 150px
+                    height: 30px
+                    margin: 0 auto
+                    font-size: 14px
+                    font-weight: 500
+                    line-height: 16px
+                    color: $color-w
+                    background: $color-5
+                    border-radius: 8px
+                    cursor: pointer
+
+                    *
+                        cursor: pointer
+
+                    #userimage
+                        display: none
+
+            .profile-form
+                width: 100%
+
+                .form-col
+                    display: flex
+                    margin: -1px
+
+                    .form-col-title
+                        width: 12rem
+                        padding-right: 2rem
+
+                        .form-title
+                            font-size: 13px
+                            font-weight: 700
+
+                    .form-col-input
+                        flex-grow: 1
+
+                        .form-input
+                            width: 100%
+                            height: 35px
+                            padding-left: 20px
+                            font-family: 'Montserrat', Arial, sans-serif
+                            font-size: 14px
+                            border: 1px solid rgba($color: $color-1, $alpha: 0.4)
+                            border-radius: 3px
+
+                        textarea.form-input
+                            height: 50px
+                            padding-top: 10px
+                            resize: none
+
+                    .form-send
+                        width: 130px
+                        height: 30px
+                        font-family: 'Montserrat', Arial, sans-serif
+                        font-size: 16px
+                        color: $color-w
+                        background: rgba($color-5, .8)
+                        border: none
+                        border-radius: 3px
+                        cursor: pointer
+
+                        &:hover 
+                            color: $color-w
+                            background: $color-5
+
+                        &:disabled
+                            color: rgba($color-b, .3)
+                            background: rgba($color-3, .3)
+                            cursor: not-allowed
+
+                    &:last-child
+                        justify-content: flex-end
+                        background: rgba($color-b, .1)
+
+            &:nth-of-type(2)
+                padding: 0
+
+
+        &.active 
+            display: block
+
