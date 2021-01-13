@@ -6,25 +6,27 @@
             <div class="right-block">
                 <div class="notification-col">
                     <button class="notifi-btn"><span class="material-icons">notifications</span>
-                        @if (!$unreadNotifications->isEmpty())
+                        @if (!$unreadNotifications->isEmpty() && $current_user->notifiable == 1)
                             <span class="notifi-count">{{$unreadNotifications->count()}}</span>
                         @endif
                     </button>
                     <div class="notifications">
                         <div class="notification-header">
                             <h6 class="notification-title">Уведомление</h6>
-                            @if (!$notifications->isEmpty())
+                            @if (!$notifications->isEmpty() && $current_user->notifiable == 1)
                                 <a class="notifications-delete" href="#">Удалить всё</a>
                             @endif
                         </div>
                         <ul class="notification-menu">
-                            @foreach ($notifications as $notification)
-                                <li class="notification-item">
-                                    <h5 class="notification-user">{{ $notification->data['name'] }}</h5>
-                                    <p class="notification-msg">{{ $notification->data['message'] }}</p>
-                                    <h5 class="notification-time">{{ $notification->created_at }}</h5>
-                                </li>
-                            @endforeach
+                            @if ($current_user->notifiable == 1)
+                                @foreach ($notifications as $notification)
+                                    <li class="notification-item">
+                                        <h5 class="notification-user">{{ $notification->data['name'] }}</h5>
+                                        <p class="notification-msg">{{ $notification->data['message'] }}</p>
+                                        <h5 class="notification-time">{{ $notification->created_at }}</h5>
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>

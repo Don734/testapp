@@ -513,22 +513,12 @@ ul {
 }
 
 .sidebar .dropdown-item .sidebar-dropdown-menu {
-  position: absolute;
-  top: 0;
-  right: -260px;
   display: none;
-  width: 260px;
-  background: #fff;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-  border-radius: 0 5px 5px 0;
+  background: #FBFBFB;
 }
 
 .sidebar .dropdown-item .sidebar-dropdown-menu .sidebar-link {
-  margin: 0;
-}
-
-.sidebar .dropdown-item .sidebar-dropdown-menu.dropdown-active {
-  display: block;
+  padding-left: 20px;
 }
 
 .sidebar .sidebar-link,
@@ -608,7 +598,7 @@ ul {
 }
 
 .sidebar.sidebar-active .sidebar__toggle-min .icon {
-  transform: rotateY(180deg);
+  transform: rotateY(0);
 }
 
 .msg-error {
@@ -681,6 +671,12 @@ ul {
 .modalForm .modalForm__col .modalForm__submit:hover {
   color: #fff;
   background: #3C4858;
+}
+
+.modalForm .modalForm__col span {
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #3C4858;
 }
 
 .modalForm.active {

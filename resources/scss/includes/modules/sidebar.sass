@@ -23,20 +23,13 @@
         
     .dropdown-item 
         position: relative
+
         .sidebar-dropdown-menu 
-            position: absolute
-            top: 0
-            right: -260px
             display: none
-            width: 260px
-            background: $color-w
-            box-shadow: 0 5px 10px rgba($color: $color-b, $alpha: 0.3)
-            border-radius: 0 5px 5px 0
-            .sidebar-link 
-                margin: 0
-            
-            &.dropdown-active 
-                display: block
+            background: $color-3
+
+            .sidebar-link
+                padding-left: 20px
             
     .sidebar-link, .logout-link 
         display: flex
@@ -48,17 +41,18 @@
         color: $color-1
         border-radius: 3px
         transition: .3s
+
         .icon 
-                display: flex
-                justify-content: center
-                align-items: center
-                width: 30px
-                height: 30px
-                padding: 15px 10px
-                font-size: 30px
+            display: flex
+            justify-content: center
+            align-items: center
+            width: 30px
+            height: 30px
+            padding: 15px 10px
+            font-size: 30px
         
         .text 
-                display: none
+            display: none
         
     .sidebar-link:first-child 
             margin-top: 0
@@ -67,39 +61,39 @@
             margin-top: 0
     
     .sidebar__toggle-min 
-            display: flex
-            justify-content: center
-            align-items: center
-            position: absolute
-            width: 40px
-            height: 40px
-            right: -40px
-            top: 0
-            font-size: 20px
-            color: $color-1
-            border: 1px solid rgba($color: $color-b, $alpha: 0.1)
-            background: $color-w
-            cursor: pointer
+        display: flex
+        justify-content: center
+        align-items: center
+        position: absolute
+        width: 40px
+        height: 40px
+        right: -40px
+        top: 0
+        font-size: 20px
+        color: $color-1
+        border: 1px solid rgba($color: $color-b, $alpha: 0.1)
+        background: $color-w
+        cursor: pointer
+        transition: .3s
+        outline: none
+        
+        .icon 
             transition: .3s
-            outline: none
-
-            .icon 
-                transition: .3s
-            
-            &:hover 
-                color: $color-w
-                background: $color-5
-                border: none
+        
+        &:hover 
+            color: $color-w
+            background: $color-5
+            border: none
         
     .logout-link 
-            position: absolute
-            bottom: 15px
-            width: 230px
-            margin-bottom: 0
+        position: absolute
+        bottom: 15px
+        width: 230px
+        margin-bottom: 0
     
     &.sidebar-active 
-            left: 0
+        left: 0
 
-            .sidebar__toggle-min 
-                .icon 
-                    transform: rotateY(180deg)
+        .sidebar__toggle-min 
+            .icon 
+                transform: rotateY(0)

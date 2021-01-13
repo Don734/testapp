@@ -95,13 +95,13 @@ class NoName {
             success: function (response) {
                 $("#modalTable form").prepend('<input id="methodPut" type="hidden" name="_method" value="PUT">');
                 $("#project").val(response.project);
-                $("#description").val(response.description);
                 $("#name").val(response.name);
                 $("#score").val(response.score);
                 $("#codeproduct").val(response.codeprod);
                 $("#unit").val(response.unit);
-                $("#comingcur").val(response.comingcur);
-                $("#comingprev").val($("#comingcur").val());
+                $("#weight").val(response.weight);
+                $("#size").val(response.size);
+                $("#comingprev").val(response.comingcur);
                 $("#addNewTable").val('Сохранить');
             }
         });
@@ -117,8 +117,7 @@ class NoName {
             url: this.url + '/' + this.id,
             dataType: "json",
             success: function (response) {
-                $("#expenscur").val(response.expenscur);
-                $("#expensprev").val($("#expenscur").val());
+                $("#expensprev").val(response.expenscur);
                 $("#balanceprev").val(response.balancecur);
             }
         });

@@ -10,14 +10,18 @@ class Table extends Model
     use HasFactory;
 
     protected $fillable = [
-        'project',
-        'description',
+        // 'project',
         'name',
         'score',
         'codeprod',
         'unit',
+        'weight',
+        'size',
+        'weight_one_material',
         'count',
         'comingcur',
-        'expenscur'
+        'expenscur',
+        'size_unit',
+        'general_weight'
     ];
 }

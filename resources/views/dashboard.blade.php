@@ -14,9 +14,9 @@
                             <span class="numbers">{{ $coming }}</span>
                         </div>
                         <span class="material-icons icon bg-green">trending_up</span>
-                        <div class="old-week">
+                        {{-- <div class="old-week">
                             <p class="old-week-name">На прошлой неделе: <span class="value">6</span></p>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="col">
                         <div class="left-block">
@@ -24,9 +24,6 @@
                             <span class="numbers">{{ $expens }}</span>
                         </div>
                         <span class="material-icons icon bg-red">trending_down</span>
-                        <div class="old-week">
-                            <p class="old-week-name">На прошлой неделе: <span class="value">6</span></p>
-                        </div>
                     </div>
                     <div class="col">
                         <div class="left-block">
@@ -34,9 +31,6 @@
                             <span class="numbers">{{ $balance }}</span>
                         </div>
                         <span class="material-icons icon bg-yellow">trending_flat</span>
-                        <div class="old-week">
-                            <p class="old-week-name">На прошлой неделе: <span class="value">6</span></p>
-                        </div>
                     </div>
                 </div>
             </div>

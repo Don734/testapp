@@ -10,7 +10,7 @@
         @include('modules.sidebar')
         <section class="content">
             <div class="container_table">
-                <h2 class="page__title"><span class="icon material-icons">table_chart</span>Таблицы</h2>
+                <h2 class="page__title"><span class="icon material-icons">table_chart</span>Материалы</h2>
                 <div class="table__col" id="table_id-wrap">
                     @can('manage-tables')
                         <button class="add" id="addTable">Добавить</button>
@@ -19,15 +19,16 @@
                         <thead>
                             <tr>
                                 <th rowspan="2"></th>
-                                <th rowspan="2">Проект</th>
-                                <th rowspan="2">Описание</th>
                                 <th rowspan="2">Наименование</th>
                                 <th rowspan="2">Счёт №</th>
                                 <th rowspan="2">Код продукта</th>
                                 <th rowspan="2">Ед. изм.</th>
+                                <th rowspan="2">Вес 1-го материала</th>
                                 <th rowspan="1" colspan="2">Приход</th>
                                 <th rowspan="1" colspan="2">Расход</th>
                                 <th rowspan="1" colspan="2">Остаток</th>
+                                <th rowspan="2">Размер за ед. изм.</th>
+                                <th rowspan="2">Общий вес</th>
                                 <th rowspan="2"></th>
                             </tr>
                             <tr>
@@ -43,18 +44,19 @@
                             @foreach ($tables as $table)
                                 <tr>
                                     <td><button class='details-control' data-id={{ $table->id }}><span class='material-icons'>expand_more</span></button></td>
-                                    <td>{{ $table->project }}</td>
-                                    <td>{{ $table->description }}</td>
                                     <td>{{ $table->name }}</td>
                                     <td>{{ $table->score }}</td>
                                     <td>{{ $table->codeprod }}</td>
                                     <td>{{ $table->unit }}</td>
+                                    <td>{{ $table->weight_one_material }}</td>
                                     <td>{{ $table->comingcur }}</td>
                                     <td>{{ $table->comingprev }}</td>
                                     <td>{{ $table->expenscur }}</td>
                                     <td>{{ $table->expensprev }}</td>
                                     <td>{{ $table->balancecur }}</td>
                                     <td>{{ $table->balanceprev }}</td>
+                                    <td>{{ $table->size_unit }}</td>
+                                    <td>{{ $table->general_weight }}</td>
                                     <td>
                                         @can('manage-tables')
                                             <button class='actions-control'><span class='material-icons'>more_horiz</span></button>
@@ -62,7 +64,7 @@
                                                 <a class="action-btn" href=""><span class="material-icons">reply</span></a>
                                                 <button class="action-btn editTable" data-id="{{ $table->id }}"><span class="material-icons">edit</span></button>
                                                 <button class="action-btn editExpens" data-id="{{ $table->id }}"><span class="material-icons">trending_down</span></button>
-                                                <form action="{{ route('destroyTable', ['table' => $table->id]) }}" method="post">
+                                                <form action="{{ route('destroyTable', ['material' => $table->id]) }}" method="post">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button class="action-btn"><span class="material-icons">remove</span></button>
@@ -84,14 +86,6 @@
                 <form class="modalForm-control" action="{{ route('createTable') }}" method="POST">
                     @csrf
                     <div class="modalForm__col">
-                        <label for="project">Название проекта:</label>
-                        <input class="modalForm__control" id="project" type="text" name="project">
-                    </div>
-                    <div class="modalForm__col">
-                        <label for="description">Описание:</label>
-                        <input class="modalForm__control" id="description" type="text" name="description">
-                    </div>
-                    <div class="modalForm__col">
                         <label for="name">Наименование:</label>
                         <input class="modalForm__control" id="name" type="text" name="name">
                     </div>
@@ -105,10 +99,17 @@
                     </div>
                     <div class="modalForm__col">
                         <label for="unit">Ед. изм.:</label>
-                        <select class="modalForm__control" id="unit" name="unit">
-                            <option value="шт.">шт.</option>
-                            <option value="к-т.">к-т.</option>
-                        </select>
+                        <input class="modalForm__control" id="unit" type="text" name="unit">
+                    </div>
+                    <div class="modalForm__col">
+                        <label for="weight">Масса за ед. изм.:</label>
+                        <input class="modalForm__control" id="weight" type="text" name="weight">
+                        <span>Заметка: Дробные числа вводите с . (точкой). Например: 12.345</span>
+                    </div>
+                    <div class="modalForm__col">
+                        <label for="size">Стандартный размер:</label>
+                        <input class="modalForm__control" id="size" type="text" name="size">
+                        <span>Заметка: Дробные числа вводите с . (точкой). Например: 12.345</span>
                     </div>
                     <div class="modalForm__col">
                         <label for="comingcur">Количество:</label>
@@ -123,19 +124,18 @@
             <div class="modalForm" id="modalExpens">
                 <button class="modalForm__close" id="modalClose"><span class="material-icons">close</span></button>
                 @foreach ($tables as $table)
-                    <form class="modalFormExpens-control" action="{{ route('updateExpens', ['table' => $table->id]) }}" method="POST">
-                        @method('PATCH')
-                        @csrf
-                        <div class="modalForm__col">
-                            <label for="expens">Расход:</label>
-                            <input class="modalForm__control" id="expenscur" type="text" name="expenscur">
-                            <input class="modalForm__control" id="expensprev" type="hidden" name="expensprev">
-                            <input class="modalForm__control" id="balanceprev" type="hidden" name="balanceprev">
-                            
-                        </div>
-                        <div class="modalForm__col">
-                            <input class="modalForm__submit" type="submit" value="Сохранить">
-                        </div>
+                    <form class="modalFormExpens-control" action="{{ route('updateExpens', ['material' => $table->id]) }}" method="POST">
+                            @method('PATCH')
+                            @csrf
+                            <div class="modalForm__col">
+                                <label for="expens">Расход:</label>
+                                <input class="modalForm__control" id="expenscur" type="text" name="expenscur">
+                                <input class="modalForm__control" id="expensprev" type="hidden" name="expensprev">
+                                <input class="modalForm__control" id="balanceprev" type="hidden" name="balanceprev">
+                            </div>
+                            <div class="modalForm__col">
+                                <input class="modalForm__submit" type="submit" value="Сохранить">
+                            </div>
                     </form>
                     @if ($loop->iteration == 1)
                         @break

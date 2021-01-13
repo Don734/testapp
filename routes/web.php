@@ -20,7 +20,9 @@ use App\Models\Table;
 |
 */
 
-Auth::routes();
+Auth::routes([
+    'register' => false,
+]);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', function () {
@@ -31,11 +33,11 @@ Route::group(['middleware' => 'auth'], function () {
         return view('dashboard', ['coming' => Table::pluck('comingcur')->sum(), 'expens' => Table::pluck('expenscur')->sum(), 'balance' => Table::pluck('balancecur')->sum()]);
     });
     
-    Route::resource('tables', TableController::class)->names([
+    Route::resource('materials', TableController::class)->names([
         'store' => 'createTable',
         'destroy' => 'destroyTable'
     ]);
-    Route::patch('tables/{table}', [TableController::class, 'updateExpens'])->name('updateExpens');
+    Route::patch('materials/{material}', [TableController::class, 'updateExpens'])->name('updateExpens');
     
     Route::resource('reports', ReportController::class)->names([
         'destroy' => 'destroyReport'

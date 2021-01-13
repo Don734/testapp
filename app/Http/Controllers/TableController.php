@@ -14,7 +14,7 @@ class TableController extends Controller
 {
     function __constructor()
     {
-        $this->middleware('permission:manage-tables', ['only' => ['store', 'update', 'destroy']]);
+        $this->middleware('permission:manage-tables', ['only' => ['store', 'update', 'updateExpens', 'destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -23,7 +23,7 @@ class TableController extends Controller
      */
     public function index()
     {
-        return view('tables.wh', ['tables' => Table::all()]);
+        return view('tables.materials', ['tables' => Table::all()]);
     }
 
     /**
@@ -48,30 +48,31 @@ class TableController extends Controller
         $curuser = Auth::user();
 
         Table::create([
-            'project' => $request->project,
-            'description' => $request->description,
+            // 'project' => $request->project,
             'name' => $request->name,
             'score' => $request->score,
             'codeprod' => $request->codeproduct,
             'unit' => $request->unit,
-            'comingcur' => $request->comingcur
+            'weight' => $request->weight,
+            'size' => $request->size,
+            'weight_one_material' => $request->weight * $request->size,
+            'comingcur' => $request->comingcur,
+            'size_unit' => $request->comingcur * $request->size,
+            'general_weight' => $request->comingcur * $request->weight,
         ]);
 
         Report::create([
-            'desc' => 'Пользователь '.$curuser->fullname.' добавил(-а) новый проект '.$request->project.' в таблицу. Наименование: '.$request->name.
-            '; Счёт №: '.$request->score.'; Код продукта: '.$request->codeproduct
+            'desc' => 'Пользователь '.$curuser->fullname.' добавил(-а) новую запись '.$request->name.' в таблицу. Счёт №: '.$request->score.'; Код продукта: '.$request->codeproduct
         ]);
 
         $offerData = [
             'name' => $curuser['fullname'],
-            'message' => 'Добавил проект '.$request->project.'. Наименование: '.$request->name
+            'message' => 'Добавил(-а) запись '.$request->name
         ];
 
-        if ($curuser->notifiable == 1) {
-            Notification::send($user, new AppNotify($offerData));
-        }
+        Notification::send($user, new AppNotify($offerData));
 
-        return redirect('/tables');
+        return redirect('/materials');
     }
 
     /**
@@ -110,33 +111,35 @@ class TableController extends Controller
         $user = User::all();
         $curuser = Auth::user();
 
-        $table->project = $request->project;
-        $table->description = $request->description;
+        // $table->project = $request->project;
         $table->name = $request->name;
         $table->score = $request->score;
         $table->codeprod = $request->codeproduct;
         $table->unit = $request->unit;
+        $table->weight = $request->weight;
+        $table->size = $request->size;
+        $table->weight_one_material = $request->weight * $request->size;
         $table->comingcur = $request->comingcur + $request->comingprev;
         $table->comingprev = $request->comingprev;
-        $table->balancecur = $table->comingcur - $table->expenscur;
+        $table->balancecur = $request->comingcur - $table->expenscur;
+        $table->size_unit = $table->balancecur * $request->size;
+        $table->general_weight = $table->balancecur * $request->weight;
         $table->save();
 
         Report::create([
-            'desc' => 'Пользователь '.$curuser->fullname.' изменил(-а) проект '.$table->project.' в таблицу. Наименование: '.$table->name.'; Счёт №: '.$table->score.
+            'desc' => 'Пользователь '.$curuser->fullname.' изменил(-а) запись '.$table->name.' в таблицу. Счёт №: '.$table->score.
             '; Код продукта: '.$table->codeprod.'; Текущ. приход: '.$table->comingcur.'; Пред. приход: '.$table->comingprev.'; Текущ. расход: '.$table->expenscur.
             '; Пред. расход: '.$table->expensprev.'; Текущ. остаток: '.$table->balancecur.'; Пред. остаток: '.$table->balanceprev
         ]);
 
         $offerData = [
             'name' => $curuser['fullname'],
-            'message' => 'Обновил проект '.$request->project.'. Наименование: '.$request->name
+            'message' => 'Обновил(-а) запись '.$request->name
         ];
 
-        if ($curuser->notifiable == 1) {
-            Notification::send($user, new AppNotify($offerData));
-        }
+        Notification::send($user, new AppNotify($offerData));
 
-        return redirect('/tables');
+        return redirect('/materials');
     }
 
     protected function updateExpens(Request $request, $id)
@@ -149,24 +152,24 @@ class TableController extends Controller
         $table->expensprev = $request->expensprev;
         $table->balancecur = $table->comingcur - $table->expenscur;
         $table->balanceprev = $request->balanceprev;
+        $table->size_unit = $table->balancecur * $table->size;
+        $table->general_weight = $table->balancecur * $table->weight;
         $table->save();
 
         Report::create([
-            'desc' => 'Пользователь '.$curuser->fullname.' изменил(-а) расход в проекте '.$table->project.' в таблицу. Наименование: '.$table->name.'; Счёт №: '.$table->score.
+            'desc' => 'Пользователь '.$curuser->fullname.' изменил(-а) расход в записе '.$table->name.' в таблицу. Счёт №: '.$table->score.
             '; Код продукта: '.$table->codeprod.'; Текущ. приход: '.$table->comingcur.'; Пред. приход: '.$table->comingprev.'; Текущ. расход: '.$table->expenscur.
             '; Пред. расход: '.$table->expensprev.'; Текущ. остаток: '.$table->balancecur.'; Пред. остаток: '.$table->balanceprev
         ]);
 
         $offerData = [
             'name' => $curuser['fullname'],
-            'message' => 'Изменил израсходованное кол-во в проекте'.$request->project.'. Наименование: '.$request->name
+            'message' => 'Изменил(-а) израсходованное кол-во в записе'.$request->name
         ];
 
-        if ($curuser->notifiable == 1) {
-            Notification::send($user, new AppNotify($offerData));
-        }
+        Notification::send($user, new AppNotify($offerData));
 
-        return redirect('/tables');
+        return redirect('/materials');
     }
 
     /**
@@ -183,20 +186,17 @@ class TableController extends Controller
 
         $offerData = [
             'name' => $curuser['fullname'],
-            'message' => 'Удалил проект '.$table->project.'. Наименование: '.$table->name
+            'message' => 'Удалил(-а) запись '.$table->name
         ];
 
         Report::create([
-            'desc' => 'Пользователь '.$curuser->fullname.' удалил(-а) проект '.$table->project.' в таблицу. Наименование: '.$table->name.
-            '; Счёт №: '.$table->score.'; Код продукта: '.$table->codeprod
+            'desc' => 'Пользователь '.$curuser->fullname.' удалил(-а) запись '.$table->name.' в таблицу. Счёт №: '.$table->score.'; Код продукта: '.$table->codeprod
         ]);
 
         $table->delete();
 
-        if ($curuser->notifiable == 1) {
-            Notification::send($user, new AppNotify($offerData));
-        }
+        Notification::send($user, new AppNotify($offerData));
 
-        return redirect('/tables');
+        return redirect('/materials');
     }
 }
